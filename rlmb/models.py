@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
-
+from django.contrib import admin
 # Create your models here.
 
 #Пример словаря для выбора значений
@@ -64,3 +64,9 @@ class RealElement(models.Model):
 	#simmodel=#Cписок доступных форматов симуляции
 	datasheet=models.URLField() #Ссылка на скачивание даташита 
 	analog=models.ManyToManyField("self")#список аналогов
+
+#Регистрируем модели в приложении администрирования
+admin.site.register(RealElement)
+admin.site.register(Footprint)
+admin.site.register(Schematic)
+admin.site.register(model3D)
