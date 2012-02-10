@@ -1,4 +1,7 @@
 # -*- coding: UTF-8 -*-
+#Authors Khoteev Sergey, Kisel Arkadiy
+#License GPLv2
+
 from django.db import models
 from django.contrib import admin
 # Create your models here.
