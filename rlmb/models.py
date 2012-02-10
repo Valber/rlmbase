@@ -48,7 +48,7 @@ class Footprint(models.Model):
 	#tstandart=#Тип стандарта[iso,gost]
 	#тип монтажа? (ну или у нас будет здоровая папка где хрен разберешься без базы)
 	modfile=models.FileField(upload_to='footprint') #Файл с описанием зарисовки футпринта
-	mdcfile=models.FileField(upload_to='footprint') #Файл с описанием.... слабо понятно
+	mdcfile=models.FileField(upload_to='footprint',blank="TRUE") #Файл с описанием.... слабо понятно
 	pics=models.ImageField(upload_to='pics/footprint') #картинка с изображением и размерами
 	#лайки
 	levq=models.CharField(max_length=2, default='A' , choices=QUALITY_CHOICES)#уровень готовности кортеж [добавлено,проверено(на грубые ошибки),одобрено(распространяеться в библиотеках с помощью sync)]
@@ -62,8 +62,8 @@ class RealElement(models.Model):
 	shem=models.ManyToManyField(Schematic) #Список схемотехники варианты стандартов гост и исо
 	footprint=models.ManyToManyField(Footprint) #Список возможных
 	#simmodel=#Cписок доступных форматов симуляции
-	datasheet=models.URLField() #Ссылка на скачивание даташита 
-	analog=models.ManyToManyField("self")#список аналогов
+	datasheet=models.URLField(blank="TRUE") #Ссылка на скачивание даташита 
+	analog=models.ManyToManyField("self", verbose_name="List Analog",blank="TRUE")#список аналогов
 
 #Регистрируем модели в приложении администрирования
 admin.site.register(RealElement)
