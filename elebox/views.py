@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#from django.conf.elebox.models import 
+from elebox.models import *
 from django.template import loader, Context
 from django.http import HttpResponse
 # Стартовая страница базы данных
@@ -8,6 +8,12 @@ def index(request):
         c = Context({'title':'RLMbase Start Page'})
         return HttpResponse(t.render(c))
 #Страница со списком моделей корпусов
+def corpusview(request):
+        corpus= Corpus.objects.all() 
+        t = loader.get_template("model.html")
+        c = Context({'title_page':'Corpus','models':corpus })
+        return HttpResponse(t.render(c))
+
 # def models(request):
 #         models3d= model3D.objects.all() 
 #         t = loader.get_template("model.html")
