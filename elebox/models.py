@@ -19,7 +19,11 @@ DEVICE_TYPES = (
 class Corpus(models.Model):
     name = models.CharField(max_length=80)
     draft=models.ImageField(upload_to='pics/corps', blank=True)
-    #wrmlfile=models.FileField(upload_to='models') #обязательный параметр
+    #wrmlfile=models.FileField(upload_to='models') #обязательный
+    # параметр, думаю что приложение для локального использования
+    # должно уже поставляться с фотками и файлами корпусов.. надо
+    # сделать что ли фирменный стиль.... точнее придумать.
+    
 
 class CorpusAdmin(admin.ModelAdmin):
     list_display = ('name',)
@@ -44,7 +48,7 @@ class Radioelem(models.Model):
     manufacturer= models.CharField(max_length=80, blank=True)
     country = models.CharField(max_length=80, default='china')
     place =models.ManyToManyField(Placekeep)
-    corpus =models.ManyToManyField(Corpus)
+    corpus =models.ForeignKey(Corpus)
     analog=models.ManyToManyField("self", verbose_name="List Analog", blank=True )#список аналогов
 
 class RadioelemAdmin(admin.ModelAdmin):

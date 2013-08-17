@@ -32,9 +32,9 @@ def corpusview(request):
 #         c = Context({'title_page':'Schematics','models':shems })
 #         return HttpResponse(t.render(c))
 
-# def element(request):
-#         elements= RealElement.objects.all() 
-#         t = loader.get_template("model.html")
-#         c = Context({'title_page':'Real Devices','models':elements })
-#         return HttpResponse(t.render(c))
+def element(request):
+        elements= Radioelem.objects.all() 
+        t = loader.get_template("element.html")
+        c = Context({'title_page':'Моё барахло','models':elements })
+        return HttpResponse(t.render(c))
 

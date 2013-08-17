@@ -1,0 +1,16 @@
+{% extends "base_triada.html" %}
+{% load thumbnail %}
+{% block content %}
+{% for model in models %}
+<h2>{{ model.name }}</h2>
+<bold>{{ model.typedev }}</bold>
+  <!--Thmbnail experiment-->
+  {% thumbnail model.corpus.draft "100x100" crop="center" as im %}
+  <a src="{{MEDIA_URL}}{{im.url}}">
+  <img src="{{MEDIA_URL}}{{im.url}}" width="{{im.width}}"></a>
+  {% endthumbnail %}
+  <p>{{ model.corpus.name }}<p>
+<p>{{ model.manufacturer }}<p>
+<p>{{ model.country }}<p>
+{% endfor %}
+{% endblock %}
