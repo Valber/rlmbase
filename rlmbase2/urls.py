@@ -8,7 +8,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'rlmbase2.views.home', name='home'),
-    # url(r'^rlmbase2/', include('rlmbase2.foo.urls')),
+    url(r'^rlmbase/', include('elebox.urls')),
+    
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

@@ -1,0 +1,37 @@
+body {
+    font: 0.8em Arial, Helvetica, sans-serif; /* Шрифт на веб-странице */
+    background: #453; /* Цвет фона */
+    color: #ffe; /* Цвет текста */ padding: 0 5em; margin: 0
+   }
+   a { color: #008BCE; /* Цвет ссылок */ }
+   h1 { padding: 2em 1em; background: #675 }
+   h2 { color: #bf8; border-top: 1px dotted #fff; margin-top: 2em }
+   p { margin: 1em 0 }
+   #container {
+    width: 500px; /* Ширина макета */
+    margin: 0 auto; /* Выравниваем по центру */
+    background: #FCE600; /* Цвет колонок */
+   }
+   #header { 
+    font-size: 2.2em; /* Размер текста */
+    text-align: center; /* Выравнивание по центру */
+    padding: 5px; /* Отступы вокруг текста */
+    background: #D71920; /* Цвет фона шапки */
+   }
+   #nav, #aside {
+    float: left; width: 110px; padding: 5px;
+   }
+   #content {
+    background: #54B948;
+    margin: 0 120px; /* Ширина колонок */
+    padding: 10px;
+   }
+   #aside {
+    float: right; color: #000;
+   }
+   h2 { margin: 0 0 1em; }
+   #footer { 
+    clear: both; /* Отменяем действие float */
+    padding: 5px; /* Отступы вокруг текста */
+    background: #D71920; /* Цвет фона подвала */
+   }
