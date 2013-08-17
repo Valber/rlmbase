@@ -1,16 +1,27 @@
 {% extends "base_triada.html" %}
 {% load thumbnail %}
 {% block content %}
+<table>
 {% for model in models %}
-<h2>{{ model.name }}</h2>
-<bold>{{ model.typedev }}</bold>
-  <!--Thmbnail experiment-->
-  {% thumbnail model.corpus.draft "100x100" crop="center" as im %}
-  <a src="{{MEDIA_URL}}{{im.url}}">
-  <img src="{{MEDIA_URL}}{{im.url}}" width="{{im.width}}"></a>
-  {% endthumbnail %}
-  <p>{{ model.corpus.name }}<p>
-<p>{{ model.manufacturer }}<p>
-<p>{{ model.country }}<p>
+  <tr>
+    <td><h2>{{ model.name }}</h2></td>
+    <td>{{ model.number }}</td>
+    <td><bold>{{ model.typedev }}</bold></td>
+    <td>
+      {% thumbnail model.corpus.draft "100x100" crop="center" as im %}
+      <a src="{{MEDIA_URL}}{{im.url}}">
+	<img src="{{MEDIA_URL}}{{im.url}}" width="{{im.width}}"></a>
+      {% endthumbnail %}
+      <p>{{ model.corpus.name }}<p>
+    </td>
+    {% if model.datasheet %}
+      <td><a href="{{ model.datasheet }}">datasheet</a></td>      
+    {% else %}
+      <td>Empty</td>
+    {% endif %}
+    <td><p>{{ model.manufacturer }}<p></td>
+    <td><p>{{ model.country }}<p></td>
+  </tr>
 {% endfor %}
+</table>
 {% endblock %}

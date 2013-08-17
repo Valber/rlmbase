@@ -8,7 +8,7 @@ body {
    h2 { color: #bf8; border-top: 1px dotted #fff; margin-top: 2em }
    p { margin: 1em 0 }
    #container {
-    width: 500px; /* Ширина макета */
+    width: 1000px; /* Ширина макета */
     margin: 0 auto; /* Выравниваем по центру */
     background: #FCE600; /* Цвет колонок */
    }
@@ -23,7 +23,7 @@ body {
    }
    #content {
     background: #54B948;
-    margin: 0 120px; /* Ширина колонок */
+    margin: 0 200px; /* Ширина колонок */
     padding: 10px;
    }
    #aside {
