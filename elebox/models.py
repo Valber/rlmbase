@@ -23,6 +23,9 @@ class Corpus(models.Model):
     # параметр, думаю что приложение для локального использования
     # должно уже поставляться с фотками и файлами корпусов.. надо
     # сделать что ли фирменный стиль.... точнее придумать.
+
+    def __unicode__(self):
+        return self.name
     
 
 class CorpusAdmin(admin.ModelAdmin):
@@ -33,6 +36,9 @@ class Placekeep(models.Model):
     description = models.CharField(max_length=80)
     pics=models.ImageField(upload_to='pics/place', blank=True)
     # place =
+
+    def __unicode__(self):
+        return self.name
 
 class PlacekeepAdmin(admin.ModelAdmin):
     """
@@ -51,10 +57,22 @@ class Radioelem(models.Model):
     corpus =models.ForeignKey(Corpus)
     analog=models.ManyToManyField("self", verbose_name="List Analog", blank=True )#список аналогов
 
+    def __unicode__(self):
+        return '%s'%(self.name) + " | " + '%s'%(self.corpus)
+
+
+    
 class RadioelemAdmin(admin.ModelAdmin):
     """
     """
-    list_display = ('name', 'typedev', 'number', 'manufacturer','country')
+    list_display = ('name', 'typedev', 'number', 'manufacturer','country','corpus')
+
+    # def corpus_name(self, obj):
+    #     return '%s'%(obj.corpus.name)
+    # corpus_name.short_description = 'Name'        
+
+    # def corpus_name(self, instance):
+    #     return instance.corpus.name
 
 admin.site.register(Radioelem,RadioelemAdmin)
 admin.site.register(Corpus,CorpusAdmin)
