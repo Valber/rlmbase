@@ -1,10 +1,10 @@
 {% extends "base_triada.html" %}
 {% load thumbnail %}
 {% block content %}
-<table>
+<table width="100%" border="4" frame="hsides">
 {% for model in models %}
   <tr>
-    <td><h2>{{ model.name }}</h2></td>
+    <td><h3>{{ model.name }}</h3></td>
     <td>{{ model.number }}</td>
     <td><bold>{{ model.typedev }}</bold></td>
     <td>
@@ -12,7 +12,7 @@
       <a src="{{MEDIA_URL}}{{im.url}}">
 	<img src="{{MEDIA_URL}}{{im.url}}" width="{{im.width}}"></a>
       {% endthumbnail %}
-      <p>{{ model.corpus.name }}<p>
+      <p><a href="{{model.corpus.draft.url}}">{{ model.corpus.name }}</a><p>
     </td>
     {% if model.datasheet %}
       <td><a href="{{ model.datasheet }}">datasheet</a></td>      

@@ -65,15 +65,29 @@ class Radioelem(models.Model):
 class RadioelemAdmin(admin.ModelAdmin):
     """
     """
-    list_display = ('name', 'typedev', 'number', 'manufacturer','country','corpus')
+    list_display = ('name', 'typedev', 'number', 'corpus', 'manufacturer','country')
 
-    # def corpus_name(self, obj):
-    #     return '%s'%(obj.corpus.name)
-    # corpus_name.short_description = 'Name'        
 
-    # def corpus_name(self, instance):
-    #     return instance.corpus.name
 
+class Device(models.Model):
+    name=models.CharField(max_length=80)
+    foto=models.ImageField(upload_to='pics/devfoto', blank=True)
+    typedev = models.CharField(max_length=80)
+    datasheet=models.URLField(blank="TRUE") #Ссылка на скачивание даташита
+    number = models.IntegerField()
+    place =models.ManyToManyField(Placekeep)
+    bom=models.ManyToManyField("self", verbose_name="List Analog", blank=True )#список
+                                                                               #деталей
+                                                                               #которые
+                                                                               #можно
+                                                                               #позаимствовать.
+    def __unicode__(self):
+        return '%s'%(self.name) + " | " + '%s'%(self.typedev)
+
+class DeviceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'typedev', 'number')
+
+admin.site.register(Device,DeviceAdmin)
 admin.site.register(Radioelem,RadioelemAdmin)
 admin.site.register(Corpus,CorpusAdmin)
 admin.site.register(Placekeep,PlacekeepAdmin)
