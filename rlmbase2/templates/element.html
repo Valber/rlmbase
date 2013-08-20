@@ -2,6 +2,16 @@
 {% load thumbnail %}
 {% block content %}
 <table width="100%" border="4" frame="hsides">
+<tr>
+  <td>Название</td>
+  <td>№</td>
+  <td>Тип</td>
+  <td>Корпус</td>
+  <td>Справка</td>
+  <td>Хранилище</td>
+  <td>Производитель</td>
+  <td>Страна</td>
+</tr>
 {% for model in models %}
   <tr>
     <td><h3>{{ model.name }}</h3></td>

@@ -23,7 +23,7 @@ body {
    }
    #content {
     background: #54B948;
-    margin: 0 200px; /* Ширина колонок */
+    margin: 0 150px; /* Ширина колонок */
     padding: 10px;
    }
    #aside {
