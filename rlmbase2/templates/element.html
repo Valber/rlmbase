@@ -19,6 +19,11 @@
     {% else %}
       <td>Empty</td>
     {% endif %}
+    <td>
+      {% for place in model.place.all %}
+	<p>{{ place.name }}<p>
+      {% endfor %}
+    </td>
     <td><p>{{ model.manufacturer }}<p></td>
     <td><p>{{ model.country }}<p></td>
   </tr>
