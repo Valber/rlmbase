@@ -31,7 +31,7 @@
     {% endif %}
     <td>
       {% for place in model.place.all %}
-	<p>{{ place.name }}<p>
+	<p><a href="../place/{{ place.name }}">{{ place.name }}</a><p>
       {% endfor %}
     </td>
     <td><p>{{ model.manufacturer }}<p></td>

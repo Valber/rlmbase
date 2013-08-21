@@ -41,8 +41,6 @@ class Placekeep(models.Model):
         return self.name
 
 class PlacekeepAdmin(admin.ModelAdmin):
-    """
-    """
     list_display = ('name', 'description')
     
 class Radioelem(models.Model):
@@ -63,8 +61,6 @@ class Radioelem(models.Model):
 
     
 class RadioelemAdmin(admin.ModelAdmin):
-    """
-    """
     list_display = ('name', 'typedev', 'number', 'corpus', 'manufacturer','country')
 
 
@@ -76,11 +72,7 @@ class Device(models.Model):
     datasheet=models.URLField(blank="TRUE") #Ссылка на скачивание даташита
     number = models.IntegerField()
     place =models.ManyToManyField(Placekeep)
-    bom=models.ManyToManyField("self", verbose_name="List Analog", blank=True )#список
-                                                                               #деталей
-                                                                               #которые
-                                                                               #можно
-                                                                               #позаимствовать.
+    bom=models.ManyToManyField("self", verbose_name="List Analog", blank=True )#список деталей которые можно позаимствовать.
     def __unicode__(self):
         return '%s'%(self.name) + " | " + '%s'%(self.typedev)
 
