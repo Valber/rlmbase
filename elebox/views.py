@@ -29,7 +29,7 @@ def placeview(request, aname):
     else:
         places = Placekeep.objects.all() 
     t = loader.get_template("model.html")
-    c = Context({'title_page':'Place','models':places })
+    c = Context({'title_page':'Place','models':places, 'typedata':'places' })
     return HttpResponse(t.render(c))
 
 def element(request, aname):

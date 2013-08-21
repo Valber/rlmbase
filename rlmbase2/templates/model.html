@@ -10,6 +10,31 @@
     <a src="{{MEDIA_URL}}{{im.url}}">
       <img src="{{MEDIA_URL}}{{im.url}}" width="{{im.width}}"></a>
     {% endthumbnail %}
+
+
+    {% if typedata == 'places'  %}    
+      <table width="100%" border="0" cols="2">
+	<col width="50%">
+	<col width="50%">	
+	<tr>
+	  <td>
+	    {% if model.pics %}	    
+	      <a src="{{MEDIA_URL}}{{model.pics.url}}">
+		<img src="{{MEDIA_URL}}{{model.pics.url}}" width="100%"></a>
+	    {% endif %}
+	  </td>  
+	  <td>
+	    <list>
+	      {% for mate in model.radioelem_set.all %}	
+		<li><a href="../element/{{ mate.name }}">{{ mate.name }}</a></li>	
+	      {% endfor %}
+	    </list>
+	  </td>
+	</tr>
+      </table>
+    {% endif %}    
+
+
   {% endfor %}
 
 

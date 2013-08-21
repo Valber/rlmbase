@@ -35,7 +35,7 @@ class Placekeep(models.Model):
     name = models.CharField(max_length=80)
     description = models.CharField(max_length=80)
     pics=models.ImageField(upload_to='pics/place', blank=True)
-    # place =
+    #place = models.ForeignKey('self', blank=True, null=True, related_name='child_set')
 
     def __unicode__(self):
         return self.name
