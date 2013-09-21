@@ -18,16 +18,34 @@
 	<col width="50%">	
 	<tr>
 	  <td>
+	    <p>Изображение</p>
 	    {% if model.pics %}	    
 	      <a src="{{MEDIA_URL}}{{model.pics.url}}">
 		<img src="{{MEDIA_URL}}{{model.pics.url}}" width="100%"></a>
 	    {% endif %}
 	  </td>  
 	  <td>
+	    <p>Список компонентов</p>
 	    <list>
 	      {% for mate in model.radioelem_set.all %}	
 		<li><a href="../element/{{ mate.name }}">{{ mate.name }}</a></li>	
 	      {% endfor %}
+	    </list>
+	  </td>
+	</tr>
+	<tr>	
+	  <td> 
+	  <p>В чем содержиться</p>
+	  {% if model.place.name %}	    
+	    <a href="../place/{{  model.place.name }}">{{ model.place.name }}</a>
+	  {% endif %}
+	  </td>
+	  <td> 
+	    <p>Какие контейнеры находятся внутри</p>
+	    <list>
+	      {% for mate in model.child_set.all %}	
+		<li><a href="../place/{{ mate.name }}">{{ mate.name }}</a></li>	
+	      {% endfor %}	  
 	    </list>
 	  </td>
 	</tr>
