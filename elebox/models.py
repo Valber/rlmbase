@@ -67,12 +67,14 @@ class RadioelemAdmin(admin.ModelAdmin):
 
 class Device(models.Model):
     name=models.CharField(max_length=80)
-    foto=models.ImageField(upload_to='pics/devfoto', blank=True)
+    draft=models.ImageField(upload_to='pics/devfoto', blank=True)
     typedev = models.CharField(max_length=80)
     datasheet=models.URLField(blank="TRUE") #Ссылка на скачивание даташита
     number = models.IntegerField()
     place =models.ManyToManyField(Placekeep)
-    bom=models.ManyToManyField("self", verbose_name="List Analog", blank=True )#список деталей которые можно позаимствовать.
+    # список деталей которые можно позаимствовать.
+    bom=models.TextField( blank=True )
+    #bom=models.ManyToManyField("self", verbose_name="List Analog", blank=True )
     def __unicode__(self):
         return '%s'%(self.name) + " | " + '%s'%(self.typedev)
 

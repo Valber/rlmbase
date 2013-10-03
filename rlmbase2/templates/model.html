@@ -50,6 +50,13 @@
 	  </td>
 	</tr>
       </table>
+    {% elif typedata == 'devices'  %}
+      Пинг
+      <p><bold>Справка: </bold><a href="{{ model.datasheet }}">datasheet</a></p>      
+      <p><bold>Количество: </bold>{{ model.number }}</p>
+      <p><bold>Описание: </bold>{{ model.typedev }}</p>
+      <p><bold>BOM: </bold></p>
+      <p>{{ model.bom }}</p>  
     {% endif %}    
 
 

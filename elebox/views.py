@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from elebox.models import Corpus , Placekeep, Radioelem
+from elebox.models import Corpus , Placekeep, Radioelem, Device
 from django.template import loader, Context
 from django.http import HttpResponse
 # Стартовая страница базы данных
@@ -41,5 +41,17 @@ def element(request, aname):
         elements= Radioelem.objects.all() 
     t = loader.get_template("element.html")
     c = Context({'title_page':'Моё барахло','models':elements })
+    return HttpResponse(t.render(c))
+
+
+def device(request, aname):
+    if aname :
+        if aname[-1]=='/':
+            aname=aname[:-1]
+        devices= Device.objects.filter(name=aname) 
+    else:
+        devices= Device.objects.all()
+    t = loader.get_template("model.html")
+    c = Context({'title_page':'Устройства','models':devices, 'typedata':'devices' })
     return HttpResponse(t.render(c))
 
