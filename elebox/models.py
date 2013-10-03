@@ -78,6 +78,14 @@ class Device(models.Model):
     def __unicode__(self):
         return '%s'%(self.name) + " | " + '%s'%(self.typedev)
 
+    def get_text_as_list(self):
+        text = self.bom 
+        text_as_list = []   #преобразуем textв список
+        A=text.split("\n")
+        for i in A:
+            text_as_list.append(i.split(";")[:-1])
+        return text_as_list
+        
 class DeviceAdmin(admin.ModelAdmin):
     list_display = ('name', 'typedev', 'number')
 

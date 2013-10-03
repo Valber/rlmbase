@@ -5,12 +5,18 @@
 
   {% for model in models %}
     <h2>{{ model.name }}</h2>
-    <!--Thmbnail experiment-->
-    {% thumbnail model.draft "100x100" crop="center" as im %}
-    <a src="{{MEDIA_URL}}{{im.url}}">
-      <img src="{{MEDIA_URL}}{{im.url}}" width="{{im.width}}"></a>
-    {% endthumbnail %}
-
+    {% if typedata == 'devices'  %}
+      {% if model.draft %}	    
+	<a src="{{MEDIA_URL}}{{model.draft.url}}">
+	  <img src="{{MEDIA_URL}}{{model.draft.url}}" width="40%"></a>
+	{% endif %}
+    {% else %}
+      <!--Thmbnail experiment-->
+      {% thumbnail model.draft "100x100" crop="center" as im %}
+      <a src="{{MEDIA_URL}}{{im.url}}">
+	<img src="{{MEDIA_URL}}{{im.url}}" width="{{im.width}}"></a>
+      {% endthumbnail %}
+    {% endif %}
 
     {% if typedata == 'places'  %}    
       <table width="100%" border="0" cols="2">
@@ -51,14 +57,30 @@
 	</tr>
       </table>
     {% elif typedata == 'devices'  %}
-      Пинг
       <p><bold>Справка: </bold><a href="{{ model.datasheet }}">datasheet</a></p>      
       <p><bold>Количество: </bold>{{ model.number }}</p>
       <p><bold>Описание: </bold>{{ model.typedev }}</p>
-      <p><bold>BOM: </bold></p>
-      <p>{{ model.bom }}</p>  
-    {% endif %}    
+      <h3>BOM: </h3>
+      <table width="100%" border="0" cols="6">
+	<tr>
+	  <td></td>
+	  <td>Name</td>
+	  <td>Number</td>
+	  <td>Corpus</td>
+	  <td>Type</td>
+	  <td>Desc.</td>
+	</tr>
+      {% for item in model.get_text_as_list %}
+	<tr>
+	{% for cell in item %}
+	  <td>{{ cell }}</td>
+	{% endfor %}
+	</tr>
+      {% endfor %}
+      </table>
 
+
+    {% endif %}    
 
   {% endfor %}
 
