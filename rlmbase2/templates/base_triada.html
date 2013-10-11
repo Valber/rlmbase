@@ -21,6 +21,12 @@
    </div> 
    <div id="content"> 
    <h3>{{ title_page }}</h3>
+   <div id="search">
+     <form action="" method="get">
+       <a href="..">Home</a> &bull;
+       <label for="q">Search:</label><input type="text" name="q">
+     </form>
+   </div>
    {% block content %}
    {% endblock %}
    </div>
