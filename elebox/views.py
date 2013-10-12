@@ -51,32 +51,55 @@ def index(request):
 
 #Страница со списком моделей корпусов
 def corpusview(request, aname):
-    if aname :
-        if aname[-1]=='/':
-            aname=aname[:-1]
-        corpus= Corpus.objects.filter(name=aname) 
-    else:    
-        corpus= Corpus.objects.all() 
+    corpus = None
+    query_string = ''
+    if (request.GET):
+        if ('q' in request.GET) and request.GET['q'].strip():
+            query_string = request.GET['q']
+            entry_query = get_query(query_string, ['name', ])
+            corpus = Corpus.objects.filter(entry_query)    
+    elif (request.POST):
+        print request.POST
+    else:
+        if aname :
+            if aname[-1]=='/':
+                aname = aname[:-1]
+            corpus = Corpus.objects.filter(name=aname) 
+        else:    
+            corpus = Corpus.objects.all() 
     t = loader.get_template("model.html")
-    c = Context({'title_page':'Corpus','models':corpus })
+    c = Context({'title_page':'Corpus',
+                 'search_home':'/rlmbase/model3d/',
+                 'models':corpus })
     return HttpResponse(t.render(c))
 
 # Страница с местами хранения
 def placeview(request, aname):
-    if aname :
-        if aname[-1]=='/':
-            aname=aname[:-1]
-            print aname
-        places = Placekeep.objects.filter(name=aname) 
+    places = None
+    query_string = ''
+    if (request.GET):
+        if ('q' in request.GET) and request.GET['q'].strip():
+            query_string = request.GET['q']
+            entry_query = get_query(query_string, ['name', ])
+            places = Radioelem.objects.filter(entry_query)    
+    elif (request.POST):
+        print request.POST
     else:
-        places = Placekeep.objects.all() 
+        if aname :
+            if aname[-1]=='/':
+                aname=aname[:-1]
+            places = Placekeep.objects.filter(name=aname) 
+        else:
+            places = Placekeep.objects.all() 
     t = loader.get_template("model.html")
-    c = Context({'title_page':'Place','models':places, 'typedata':'places' })
+    c = Context({'title_page':'Place',
+                 'models':places,
+                 'search_home':'/rlmbase/place/',
+                 'typedata':'places' })
     return HttpResponse(t.render(c))
 
 # Страница с радиоэлектронными компонентами
 def element(request, aname):
-    print aname
     elements = None
     query_string = ''
     if (request.GET):
@@ -94,18 +117,33 @@ def element(request, aname):
         else:
             elements= Radioelem.objects.all() 
     t = loader.get_template("element.html")
-    c = Context({'title_page':'Моё барахло','models':elements })
+    c = Context({'title_page':'Моё барахло',
+                 'search_home':'/rlmbase/element/',
+                 'models':elements })
     return HttpResponse(t.render(c))
 
 # Страница устройств
 def device(request, aname):
-    if aname :
-        if aname[-1]=='/':
-            aname=aname[:-1]
-        devices= Device.objects.filter(name=aname) 
+    devices = None
+    query_string = ''
+    if (request.GET):
+        if ('q' in request.GET) and request.GET['q'].strip():
+            query_string = request.GET['q']
+            entry_query = get_query(query_string, ['name', 'bom', 'typedev',])
+            devices = Device.objects.filter(entry_query)    
+    elif (request.POST):
+        print request.POST
     else:
-        devices= Device.objects.all()
+        if aname :
+            if aname[-1]=='/':
+                aname=aname[:-1]
+            devices = Device.objects.filter(name=aname) 
+        else:
+            devices = Device.objects.all()
     t = loader.get_template("model.html")
-    c = Context({'title_page':'Устройства','models':devices, 'typedata':'devices' })
+    c = Context({'title_page':'Устройства',
+                 'models':devices,
+                 'search_home':'/rlmbase/device/',
+                 'typedata':'devices' })
     return HttpResponse(t.render(c))
 
