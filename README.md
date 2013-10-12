@@ -46,6 +46,11 @@ GPLv2
 Сохранение дампа базы данных для конкретной модели
 
 	./manage.py dumpdata --format=json elebox.Corpus > rlmbase2/fixtures/initial_data.json
+
+Загрузка если оно само не загрузилось
+
+	 ./manage.py loaddata my_fixture.json
 	
 Будут файлы с чертежами корпусов... моими ну или хотя бы чужими и под
 CC , я конечно включу их в git
+
