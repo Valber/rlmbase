@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import patterns, include, url
+from django.urls import path
+from elebox.views import corpusview, element, placeview, device, index
 
-urlpatterns =patterns('elebox.views',
-	url(r'^$', 'index'),
-	url(r'^model3d/(?P<aname>.*)$', 'corpusview'),
-	url(r'^element/(?P<aname>.*)$', 'element'),
-	url(r'^place/(?P<aname>.*)$', 'placeview'),
-        url(r'^device/(?P<aname>.*)$', 'device'),
-	#url(r'^component/$', 'component'),
-)
+
+urlpatterns = [
+    path('', index),
+    path('model3d/<str:aname>)', corpusview),
+    path('element/<str:aname>)', element),
+    path('place/<str:aname>)', placeview),
+    path('device/<str:aname>)', device),
+    # path(r'^component/$', 'component'),
+]
