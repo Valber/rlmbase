@@ -8,12 +8,12 @@
  </head>
  <body>
   <div id="container">
-   <div id="header"><a href="/rlmbase/">RLMbase жуткое название для барахолки</a></div>
+   <div id="header"><a href="{% url 'index' %}">RLMbase жуткое название для барахолки</a></div>
    <div id="nav">     
-    <p><a href="/model3d/">Список корпусов</a></p>
-    <p><a href="/element/">Запасы хомяка</a></p>    
-    <p><a href="/place/">Хранилища</a></p>    
-    <p><a href="/device/">Устройства</a></p>    
+    <p><a href="{% url '3dmodels' %}">Список корпусов</a></p>
+    <p><a href="{% url 'radioelem' %}">Запасы хомяка</a></p>    
+    <p><a href="{% url 'places' %}">Хранилища</a></p>    
+    <p><a href="{% url 'devices' %}">Устройства</a></p>    
    </div>
    <div id="aside">
     <h3>Новостная лента</h3>
@@ -24,8 +24,8 @@
    <div id="content"> 
    <h3>{{ title_page }}</h3>
    <div id="search">
-     <form action="{{ search_home }}" method="get">
-       <a href="{{ search_home }}">Home</a> &bull;
+     <form action="{% url search_home %}" method="get">
+       <a href="{% url search_home %}">Home</a> &bull;
        <label for="q">Search:</label><input type="text" name="q">
      </form>
    </div>

@@ -49,7 +49,9 @@ def get_query(query_string, search_fields):
 
 # Стартовая страница базы данных
 def index(request):
-    context = {'title': 'RLMbase Start Page'}
+    context = {'title': 'RLMbase Start Page',
+               'search_home': 'index'}
+    
     return render(request, 'start.html', context)
 
 
@@ -76,7 +78,7 @@ def corpusview(request, aname = None):
 
     context = {
         'title_page': 'Corpus',
-        'search_home': 'model3d/',
+        'search_home': '3dmodels',
         'models': corpus
     }
     return render(request, "model.html", context)
@@ -99,6 +101,7 @@ def placeview(request, aname = None):
     else:
         print("Debug here")
         if aname:
+            print(aname)
             if aname[-1] == '/':
                 aname = aname[:-1]
             places = Placekeep.objects.filter(name=aname)
@@ -107,7 +110,7 @@ def placeview(request, aname = None):
     context = {
         'title_page': 'Place',
         'models': places,
-        'search_home': 'place/',
+        'search_home': 'places',
         'typedata': 'places'
     }
     return render(request, "model.html", context)
@@ -137,7 +140,7 @@ def element(request, aname = None):
             elements = Radioelem.objects.all()
     context = {
         'title_page': 'Моё барахло',
-        'search_home': 'element/',
+        'search_home': 'radioelem',
         'models': elements
     }
     return render(request, "element.html", context)
@@ -168,7 +171,7 @@ def device(request, aname = None):
     context = {
         'title_page': 'Устройства',
         'models': devices,
-        'search_home': 'device/',
+        'search_home': 'devices',
         'typedata': 'devices'
     }
     return render(request, "model.html", context)
