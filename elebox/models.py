@@ -26,7 +26,7 @@ class Corpus(models.Model):
     # должно уже поставляться с фотками и файлами корпусов.. надо
     # сделать что ли фирменный стиль.... точнее придумать.
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -46,7 +46,7 @@ class Placekeep(models.Model):
         related_name='child_set',
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -70,7 +70,7 @@ class Radioelem(models.Model):
                                     verbose_name="List Analog",
                                     blank=True)  # список аналогов
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s' % (self.name) + " | " + '%s' % (self.corpus)
 
 
@@ -90,7 +90,7 @@ class Device(models.Model):
     bom = models.TextField(blank=True)
 
     # bom=models.ManyToManyField("self", verbose_name="List Analog", blank=True)
-    def __unicode__(self):
+    def __str__(self):
         return '%s' % (self.name) + " | " + '%s' % (self.typedev)
 
     def get_text_as_list(self):
